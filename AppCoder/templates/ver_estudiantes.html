@@ -1,0 +1,78 @@
+{% extends "padre.html" %}
+
+{% block titulo_pagina %}
+EntregaFinal - Estudiantes
+{% endblock %}
+
+{% block titulo %}
+<p>Bienvenido a Estudiantes.<br>Aqui están los alumnos</p>
+{% endblock %}
+
+{% block area_form %}
+<form action="/AppCoder/buscar_estudiantes/" method="get"> 
+    <p>
+    <p><strong style="font-size: larger;">Aquí puedes buscar un estudiante en Específico</strong></p>
+     <input type="text" name="apellido"> 
+     <input type="submit" value="Buscar">
+     <input type="button" value="Limpiar" onclick="limpiarBusqueda()">
+     {% if user.is_authenticated %}
+     <input type="button" value="Ver todos" onclick="verTodos()">
+     {% endif %}
+    </p>
+</form>
+
+{% if user.is_authenticated %}
+    {% if mensaje %}
+        <p>{{ mensaje }}</p>
+        {% if estudiantes %}
+            {% for estudiante in estudiantes %}
+                <p>Apellido: {{ estudiante.apellido }} - Nombre {{ estudiante.nombre }} | <a href="{% url 'actualizar_estudiantes' estudiante.id %}">Modificar</a> | <a href="{% url 'borrar_estudiantes' estudiante.id %}">Eliminar</a></p>
+            {% endfor %}
+        {% else %}
+            <p>No se encontraron estudiantes</p>
+        {% endif %}
+    {% else %}
+        <p></p>
+    {% endif %}
+
+    <ol id="todos_estudiantes" style="display:none;">
+        {% for estudiante in total %}
+            <li>Apellido: {{ estudiante.apellido }} - Nombre {{ estudiante.nombre }} | <a href="{% url 'actualizar_estudiantes' estudiante.id %}">Modificar</a> | <a href="{% url 'borrar_estudiantes' estudiante.id %}">Eliminar</a></li>
+        {% endfor %}
+    </ol>
+{% else %}
+    {% if mensaje %}
+        <p>{{ mensaje }}</p>
+        {% if estudiantes %}
+            {% for estudiante in estudiantes %}
+                <p>Apellido: {{ estudiante.apellido }} - Nombre {{ estudiante.nombre }}</p>
+            {% endfor %}
+        {% else %}
+            <p>No se encontraron estudiantes</p>
+        {% endif %}
+    {% else %}
+        <p></p>
+    {% endif %}
+{% endif %}
+
+
+
+<script>
+    function limpiarBusqueda() {
+        window.location.href = '/AppCoder/estudiantes/';
+    }
+
+    function verTodos() {
+        document.getElementById('todos_estudiantes').style.display = 'block';
+    }
+</script>
+
+{% endblock %}
+
+{% block area_creacion %}
+{% if user.is_authenticated %}
+<div class="col-auto">
+    <a class="btn btn-secondary" href="{% url 'Crear_Estudiantes' %}">CREAR ALUMNO</a>
+</div>
+{% endif %}
+{% endblock %}

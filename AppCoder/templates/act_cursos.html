@@ -1,0 +1,21 @@
+{% extends "padre.html" %}
+
+{% block titulo_pagina %}
+EntregaFinal - Actualizar Cursos
+{% endblock %}
+
+{% block titulo %}
+<p>Bienvenido a Cursos.<br>Aqui puedes modificar cursos</p>
+{% endblock %}
+
+{% block area_form %}
+
+<form action="{% url 'actualizar_curso' curso.id %}" method="post"> 
+    {% csrf_token %}
+    <p><strong style="font-size: larger;">Formulario - Actualizar Curso</strong></p>
+    <p><strong>Nombre:</strong> <input type="text" name="curso_nombre" value="{{ curso.nombre }}"></p>
+    <p><strong>Comisión:</strong> <input type="text" name="curso_comision" value="{{ curso.comision }}"></p>
+    <input type="submit" value="Guardar">
+</form>
+
+{% endblock %}

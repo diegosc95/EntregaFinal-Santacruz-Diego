@@ -1,0 +1,25 @@
+{% extends "padre.html" %}
+
+{% block titulo_pagina %}
+EntregaFinal - Crear Entregas
+{% endblock %}
+
+{% block titulo %}
+<p>Bienvenido a Entregas.<br>Aqui puedes agregar entregas</p>
+{% endblock %}
+
+{% block area_form %}
+
+<form action="/AppCoder/crear_entregas/" method="post"> {% csrf_token %}
+    <p></p>
+    <p><strong style="font-size: larger;">Formulario - Agregar Entregable</strong></p>
+    <p> <strong>Nombre: </strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="entregable_nombre"> </p>
+    <p> <strong>Fecha de Entrega: </strong> <input type="date" name="entregable_fecha"></p>
+    <p> <strong>Entregado: </strong> <input type="checkbox" name="entregable"></p>
+    
+     </p><p>
+    <button type="submit">Enviar</button></p>
+
+</form>
+
+{% endblock %}

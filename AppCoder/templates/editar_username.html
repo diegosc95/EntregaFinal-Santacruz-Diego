@@ -1,0 +1,37 @@
+{% extends "padre.html" %}
+
+{% block titulo_pagina %}
+EntregaFinal - Editar Nombre de usuario
+{% endblock %}
+
+{% block titulo %}
+<p>Aqui puedes modificar tu nombre de usuario</p>
+{% endblock %}
+
+{% block area_form %}
+
+<form action="" method="post"> 
+    {% csrf_token %}
+    <div class="form-group">
+        <br>
+        <label for="id_username"style="display: inline-block; width: 100px;">Usuario:</label>
+        {{ formu.username }}
+        <br>
+        <small>Introduzca aqui su nuevo nombre de usuario con el cual desear poder identificarse.
+            <br> Obligatorio. Longitud máxima de 150 caracteres. Solo puede estar formado por letras, números y los caracteres @/./+/-/_.
+        </small>
+    </div>
+
+    <br>
+    <input type="submit" value= "Guardar">
+    <input type="button" value="Volver atras" onclick="atras()">
+
+</form>
+
+<script>
+    function atras() {
+        window.location.href = '/AppCoder/edit/';
+    }
+</script>
+
+{% endblock %}

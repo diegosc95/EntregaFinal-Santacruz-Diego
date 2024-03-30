@@ -1,0 +1,75 @@
+{% extends "padre.html" %}
+
+{% block titulo_pagina %}
+EntregaFinal - Entregas
+{% endblock %}
+
+{% block titulo %}
+<p>Bienvenido a Entregas.<br>Aqui están los entregables</p>
+{% endblock %}
+
+{% block area_form %}
+
+<form action="/AppCoder/buscar_entregas/" method="get"> 
+    <p>
+        <strong style="font-size: larger;">Aquí puedes buscar un entregable en Específico</strong><br>
+        <input type="text" name="nombre"> 
+        <input type="submit" value="Buscar">
+        <input type="button" value="Limpiar" onclick="limpiarBusqueda()">
+        {% if user.is_authenticated %}
+        <input type="button" value="Ver todos" onclick="verTodos()">
+        {% endif %}
+    </p>
+</form>
+
+{% if user.is_authenticated %}
+    {% if mensaje %}
+        <p>{{ mensaje }}</p>
+        {% if entregas %}
+            {% for entrega in entregas %}
+                <p>Fecha: {{ entrega.fechaEntrega }} - Nombre: {{ entrega.nombre }} -  Entregado: {% if entrega.entregado %}SI{% else %}NO{% endif %} | <a href="{% url 'actualizar_entregas' entrega.id %}">Modificar</a> | <a href="{% url 'borrar_entregas' entrega.id %}">Eliminar</a></p>
+            {% endfor %}
+        {% else %}
+            <p>No se encontraron entregas</p>
+        {% endif %}
+    {% else %}
+        <p></p>
+    {% endif %}
+
+    <ol id="todas_entregas" style="display:none;">
+        {% for entrega in total %}
+            <li>Fecha: {{ entrega.fechaEntrega }} - Nombre: {{ entrega.nombre }} -  Entregado: {% if entrega.entregado %}SI{% else %}NO{% endif %} | <a href="{% url 'actualizar_entregas' entrega.id %}">Modificar</a> | <a href="{% url 'borrar_entregas' entrega.id %}">Eliminar</a></li>
+        {% endfor %}
+    </ol>
+{% else %}
+    {% if mensaje %}
+        <p>{{ mensaje }}</p>
+        {% if entregas %}
+            {% for entrega in entregas %}
+                <p>Fecha: {{ entrega.fechaEntrega }} - Nombre: {{ entrega.nombre }} -  Entregado: {% if entrega.entregado %}SI{% else %}NO{% endif %}</p>
+            {% endfor %}
+        {% else %}
+            <p>No se encontraron entregas</p>
+        {% endif %}
+    {% endif %}
+{% endif %}
+
+<script>
+    function limpiarBusqueda() {
+        window.location.href = '/AppCoder/entregas/';
+    }
+
+    function verTodos() {
+        document.getElementById('todas_entregas').style.display = 'block';
+    }
+</script>
+
+{% endblock %}
+
+{% block area_creacion %}
+{% if user.is_authenticated %}
+<div class="col-auto">
+    <a class="btn btn-secondary" href="{% url 'Crear_Entregas' %}">CREAR ENTREGABLE</a>
+</div>
+{% endif %}
+{% endblock %}

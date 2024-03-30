@@ -1,0 +1,55 @@
+{% extends "padre.html" %}
+
+{% block titulo_pagina %}
+EntregaFinal - Registro
+{% endblock %}
+
+{% block titulo %}
+
+<p>Aqui puedes agregar un  nuevo usuario</p>
+
+{% endblock %}
+
+{% block area_form %}
+
+<form action="" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        <br>
+        <label for="id_username" style="display: inline-block; width: 100px;">Usuario:</label>
+        {{ formu.username }}
+        <br>
+        <small >Obligatorio. Longitud máxima de 150 caracteres. Solo puede estar formado por letras, números y los caracteres @/./+/-/_.</small>
+    </div>
+    
+    <div class="form-group">
+        <label for="id_first_name" style="display: inline-block; width: 100px;">Nombre:</label>
+        {{ formu.first_name }}
+        <br><small>Introduzca aqui su Nombre.</small>
+    </div>
+    <div class="form-group">
+        <label for="id_last_name" style="display: inline-block; width: 100px;">Apellido:</label>
+        {{ formu.last_name }}
+        <br><small>Introduzca aqui su Apellido.</small>
+    </div>
+    <div class="form-group">
+        <label for="id_email" style="display: inline-block; width: 100px;">Email:</label>
+        {{ formu.email }}
+        <br><small>Introduzca aqui su correo electronico por el cual se vinculara su nombre de usuario.</small>
+    </div>
+    <div class="form-group">
+        <label for="id_password1" style="display: inline-block; width: 100px;">Password:</label>
+        {{ formu.password1 }}
+        <br><small>Su contraseña no puede ser similar a otros componentes de su información personal. Debe contener por lo menos 8 caracteres y no puede ser una contraseña común.</small>
+    </div>
+    <div class="form-group">
+        <label for="id_password2" style="display: inline-block; width: 100px;">Password:</label>
+        {{ formu.password2 }}
+        <br><small>Introduzca la misma contraseña nuevamente, para poder verificar la misma.</small>
+        
+    </div>
+    <br><input type="submit" value="Registrarse">
+</form>
+
+
+{% endblock %}

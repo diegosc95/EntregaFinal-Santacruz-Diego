@@ -1,0 +1,23 @@
+{% extends "padre.html" %}
+
+{% block titulo_pagina %}
+EntregaFinal - Actualizar Profesores
+{% endblock %}
+
+{% block titulo %}
+<p>Bienvenido a Profesores.<br>Aqui puedes modificar Profesores</p>
+{% endblock %}
+
+{% block area_form %}
+
+<form action="{% url 'actualizar_profesor' profesor.id %}" method="post"> 
+    {% csrf_token %}
+    <p><strong style="font-size: larger;">Formulario - Actualizar Profesor</strong></p>
+    <p><strong>Nombre:</strong> <input type="text" name="profesor_nombre" value="{{ profesor.nombre }}"></p>
+    <p><strong>Apellido:</strong> <input type="text" name="profesor_apellido" value="{{ profesor.apellido }}"></p>
+    <p><strong>Email:</strong> <input type="email" name="profesor_email" value="{{ profesor.email }}"></p>
+    <p><strong>Profesión:</strong> <input type="text" name="profesor_profesion" value="{{ profesor.profesion }}"></p>
+    <input type="submit" value="Guardar">
+</form>
+
+{% endblock %}

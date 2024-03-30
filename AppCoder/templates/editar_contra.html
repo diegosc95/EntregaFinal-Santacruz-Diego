@@ -1,0 +1,60 @@
+{% extends "padre.html" %}
+
+{% block titulo_pagina %}
+EntregaFinal - Editar Contraseña
+{% endblock %}
+
+{% block titulo %}
+
+<p>Aqui puedes modificar tu contraseña</p>
+
+{% endblock %}
+
+{% block area_form %}
+<form action="" method="post"> 
+    {% csrf_token %}
+
+    <br>
+    <div class="form-group">
+        <label for="id_old_password" style="display: inline-block; width: 210px;">Contraseña actual:</label>
+        {{ form.old_password }}
+        <br>
+        <small>Introduzca aqui su contraseña actual.</small>
+    </div>
+
+    <br>
+    <div class="form-group">
+        <label for="id_new_password1" style="display: inline-block; width: 210px;">Nueva contraseña:</label>
+        {{ form.new_password1 }}
+        <br>
+        <small>
+            Su nueva contraseña debe seguir los siguientes parametros:
+            <br>
+                - Su contraseña no puede ser similar a otros componentes de su información personal. <br>
+                - Su contraseña debe contener por lo menos 8 caracteres. <br>
+                - Su contraseña no puede ser una contraseña usada muy comúnmente. <br>
+                - Su contraseña no puede estar formada exclusivamente por números. <br>
+        </small>
+    </div>
+
+    <br>
+    <div class="form-group">
+        <label for="id_new_password2" style="display: inline-block; width: 210px;">Confirmar nueva contraseña:</label>
+        {{ form.new_password2 }}
+        <br>
+        <small>
+            Por favor, reingrese su nueva contraseña para confirmar el cambio.
+        </small>
+    </div>
+
+    <br>
+    <input type="submit" value="Guardar">
+    <input type="button" value="Volver atrás" onclick="atras()">
+</form>
+
+<script>
+    function atras() {
+        window.location.href = '/AppCoder/edit/';
+    }
+</script>
+{% endblock %}

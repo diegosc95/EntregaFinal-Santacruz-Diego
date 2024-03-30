@@ -1,0 +1,39 @@
+{% extends "padre.html" %}
+
+{% block titulo_pagina %}
+EntregaFinal - Avatar
+{% endblock %}
+
+{% block titulo %}
+
+<p>Aqui puedes agregar tu avatar</p>
+
+{% endblock %}
+
+{% block area_form %}
+
+<form action="" method="post" enctype="multipart/form-data"> 
+    {% csrf_token %}
+    <div class="form-group">
+        <br>
+        <label for="id_imagen"style="display: inline-block; width: 125px;">Nuevo Avatar:</label>
+        {{ formu.imagen }}
+        <br>
+        <small>Introduzca aqui su nuevo avatar para el usuario seleccionado.</small>
+    </div>
+  
+    <br>
+    <input type="submit" value= "Crear Avatar">
+    <input type="button" value="Volver Atras" onclick="atras()">
+
+</form>
+
+<script>
+    function atras() {
+        window.location.href = '/AppCoder/edit/';
+    }
+</script>
+
+</form>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "padre.html" %}
+
+{% block titulo_pagina %}
+EntregaFinal - Actualizar Estudiantes
+{% endblock %}
+
+{% block titulo %}
+<p>Bienvenido a Estudiantes.<br>Aqui puedes modificar alumnos</p>
+{% endblock %}
+
+{% block area_form %}
+
+<form action="{% url 'actualizar_estudiantes' estudiante.id %}" method="post"> 
+    {% csrf_token %}
+    <p><strong style="font-size: larger;">Formulario - Actualizar Estudiante</strong></p>
+    <p><strong>Nombre:</strong> <input type="text" name="estudiante_nombre" value="{{ estudiante.nombre }}"></p>
+    <p><strong>Apellido:</strong> <input type="text" name="estudiante_apellido" value="{{ estudiante.apellido }}"></p>
+    <p><strong>Email:</strong> <input type="email" name="estudiante_email" value="{{ estudiante.email }}"></p>
+    <p><strong>Edad:</strong> <input type="number" name="estudiante_edad" value="{{ estudiante.edad }}"></p>
+    <input type="submit" value="Guardar">
+</form>
+
+{% endblock %}

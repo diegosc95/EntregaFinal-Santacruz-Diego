@@ -1,0 +1,23 @@
+{% extends "padre.html" %}
+
+{% block titulo_pagina %}
+EntregaFinal - Actualizar Entregas
+{% endblock %}
+
+{% block titulo %}
+<p>Bienvenido a Entregas.<br>Aqui puedes modificar entregables</p>
+{% endblock %}
+
+{% block area_form %}
+
+<form action="{% url 'actualizar_entregas' entregable.id %}" method="post"> 
+    {% csrf_token %}
+    <p><strong style="font-size: larger;">Formulario - Actualizar Entregable</strong></p>
+    <p><strong>Nombre:</strong> <input type="text" name="entregable_nombre" value="{{ entregable.nombre }}"></p>
+    <p><strong>Fecha de Entrega:</strong> <input type="date" name="entregable_fechaEntrega" value="{{ entregable.fechaEntrega }}"></p>
+    <p><strong>Entregado:</strong> <input type="checkbox" name="entregable_entregado" {% if entregable.entregado %}checked{% endif %}></p>
+    <input type="hidden" name="entregable_entregado" value="on"> <!-- Agrega un campo oculto para asegurar que el valor sea True si el checkbox está marcado -->
+    <input type="submit" value="Guardar">
+</form>
+
+{% endblock %}

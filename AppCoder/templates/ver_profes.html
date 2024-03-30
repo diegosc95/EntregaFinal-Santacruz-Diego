@@ -1,0 +1,77 @@
+{% extends "padre.html" %}
+
+{% block titulo_pagina %}
+EntregaFinal - Profesores
+{% endblock %}
+
+{% block titulo %}
+<p>Bienvenido a Profesores.<br>Aqui están los profes</p>
+{% endblock %}
+
+{% block area_form %}
+
+<form action="/AppCoder/buscar_estudiantes/" method="get"> 
+    <p>
+        <strong style="font-size: larger;">Aquí puedes buscar un estudiante en Específico</strong><br>
+        <input type="text" name="apellido"> 
+        <input type="submit" value="Buscar">
+        <input type="button" value="Limpiar" onclick="limpiarBusqueda()">
+        {% if user.is_authenticated %}
+        <input type="button" value="Ver todos" onclick="verTodos()">
+        {% endif %}
+    </p>
+</form>
+
+
+{% if user.is_authenticated %}
+    {% if mensaje %}
+        <p>{{ mensaje }}</p>
+        {% if profes %}
+            {% for profe in profes %}
+                <p>Apellido: {{ profe.apellido }} - Nombre: {{ profe.nombre }} - Profesion: {{ profe.profesion }} | <a href="{% url 'actualizar_profesor' profe.id %}">Modificar</a> | <a href="{% url 'borrar_profesor' profe.id %}">Eliminar</a></p>
+            {% endfor %}
+        {% else %}
+            <p>No se encontraron profesores</p>
+        {% endif %}
+    {% else %}
+        <p></p>
+    {% endif %}
+
+    <ol id="todos_profes" style="display:none;">
+        {% for profe in total %}
+            <li>Apellido: {{ profe.apellido }} - Nombre: {{ profe.nombre }} - Profesion: {{ profe.profesion }} | <a href="{% url 'actualizar_profesor' profe.id %}">Modificar</a> | <a href="{% url 'borrar_profesor' profe.id %}">Eliminar</a></li>
+        {% endfor %}
+    </ol>
+{% else %}
+    {% if mensaje %}
+        <p>{{ mensaje }}</p>
+        {% if profes %}
+            {% for profe in profes %}
+                <p>Apellido: {{ profe.apellido }} - Nombre: {{ profe.nombre }} - Profesion: {{ profe.profesion }}</p>
+            {% endfor %}
+        {% else %}
+            <p>No se encontraron profesores</p>
+        {% endif %}
+    {% endif %}
+{% endif %}
+
+
+<script>
+    function limpiarBusqueda() {
+        window.location.href = '/AppCoder/profesores/';
+    }
+
+    function verTodos() {
+        document.getElementById('todos_profes').style.display = 'block';
+    }
+</script>
+
+{% endblock %}
+
+{% block area_creacion %}
+{% if user.is_authenticated %}
+<div class="col-auto">
+    <a class="btn btn-secondary" href="{% url 'Crear_Profes' %}">CREAR PROFESOR</a>
+</div>
+{% endif %}
+{% endblock %}

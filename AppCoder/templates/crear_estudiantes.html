@@ -1,0 +1,25 @@
+{% extends "padre.html" %}
+
+{% block titulo_pagina %}
+EntregaFinal - Crear Estudiantes
+{% endblock %}
+
+{% block titulo %}
+<p>Bienvenido a Estudiantes.<br>Aqui puedes agregar alumnos</p>
+{% endblock %}
+
+{% block area_form %}
+
+<form action="/AppCoder/crear_estudiantes/" method="post"> {% csrf_token %}
+    <p></p>
+    <p><strong style="font-size: larger;">Formulario - Agregar Estudiante</strong></p>
+    <p> <strong>Nombre: </strong> &nbsp;<input type="text" name="estudiante_nombre"> </p>
+    <p> <strong>Apellido: </strong> &nbsp;<input type="text" name="estudiante_apellido"> </p>
+    <p> <strong>Email: </strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="email" name="estudiante_email"> </p>
+    <p> <strong>Edad: </strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="number" name="estudiante_edad">
+     </p><p>
+    <button type="submit">Enviar</button></p>
+
+</form>
+
+{% endblock %}

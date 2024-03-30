@@ -1,0 +1,34 @@
+{% extends "padre.html" %}
+{% load static %}
+
+{% block titulo_pagina %}
+    EntregaFinal - Iniciar Sesión
+{% endblock %}
+
+{% block titulo %}
+    <p>Aqui puedes Iniciar Sesion</p>
+{% endblock %}
+
+{% block area_form %}
+
+<form action="" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        <br>
+        <label for="id_username"style="display: inline-block; width: 150px;">Nombre de usuario:</label>
+        {{ formu.username }}
+        <br>
+        <small>Introduzca aqui su nombre de usuario con el cual se registro.</small>
+    </div>
+    <div class="form-group">
+        <label for="id_password"style="display: inline-block; width: 150px;">Contraseña:</label>
+        {{ formu.password }}
+        <br>
+        <small>Introduzca aqui su contraseña asociado a su usuario.</small>
+    </div>
+    <br>
+    <input type="submit" value="Iniciar Sesión">
+</form>
+
+
+{% endblock %}
