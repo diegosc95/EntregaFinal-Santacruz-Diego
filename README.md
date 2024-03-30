@@ -21,13 +21,13 @@ El mismo me base en gran medida en lo visto en las clases 19 a la 21, sumandole 
    `pip install -r requirements.txt`
 
 3. Aplicar migraciones:
-  `python manage.py migrate`
-   `python .\manage.py makemigrations`
+   a. `python manage.py migrate`
+   b. `python .\manage.py makemigrations`
   
-4.  Iniciar la aplicación:
+5.  Iniciar la aplicación:
    `python manage.py runserver`
 
-5. Visitar la aplicación:
+6. Visitar la aplicación:
    Abre tu navegador y visita http://127.0.0.1:8000/
    El panel de administración en http://127.0.0.1:8000/admin/.
    usuario: diegoCODER
